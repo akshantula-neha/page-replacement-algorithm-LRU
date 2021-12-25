@@ -1,4 +1,4 @@
-# page-replacement-algorithm-LRU
+//page-replacement-algorithm-LRU
 #include<stdio.h>
  
 int findLRU(int time[], int n){
