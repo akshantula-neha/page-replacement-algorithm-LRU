@@ -38,7 +38,7 @@ Let capacity be the number of pages that memory can hold. Let set be the current
 
 Sample String : 0 4 1 4 2 4 3 4 2 4 0 4
 
-![image](https://user-images.githubusercontent.com/90513459/147379631-1d7edeed-2f07-492d-ba75-3b102f97024b.png) 
+<img width="580" alt="GITHUB2" src="https://user-images.githubusercontent.com/90513459/147381141-1030b814-961f-4f5b-b8a0-2314622fd341.png">
 
 **OUTPUT:**
- ![image](https://user-images.githubusercontent.com/90513459/147379615-17f25dbc-1c38-4c3d-8788-c87c6328c47a.png)
+![Screenshot (4)](https://user-images.githubusercontent.com/90513459/147380774-55a36e1e-cab9-4a2c-8816-254fd54e4311.png)
