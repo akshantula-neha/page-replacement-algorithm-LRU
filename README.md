@@ -1,74 +1,44 @@
 # page-replacement-algorithm-LRU
-#include<stdio.h>
- 
-int findLRU(int time[], int n){
-int i, minimum = time[0], pos = 0;
- 
-for(i = 1; i < n; ++i){
-if(time[i] < minimum){
-minimum = time[i];
-pos = i;
-}
-}
-return pos;
-}
- 
-int main()
-{
-    int no_of_frames, no_of_pages, frames[10], pages[30], counter = 0, time[10], flag1, flag2, i, j, pos, faults = 0;
-printf("Enter number of frames: ");
-scanf("%d", &no_of_frames);
-printf("Enter number of pages: ");
-scanf("%d", &no_of_pages);
-printf("Enter reference string: ");
-    for(i = 0; i < no_of_pages; ++i){
-     scanf("%d", &pages[i]);
-    }
-    
-for(i = 0; i < no_of_frames; ++i){
-     frames[i] = -1;
-    }
-    
-    for(i = 0; i < no_of_pages; ++i){
-     flag1 = flag2 = 0;
-    
-     for(j = 0; j < no_of_frames; ++j){
-     if(frames[j] == pages[i]){
-     counter++;
-     time[j] = counter;
-   flag1 = flag2 = 1;
-   break;
-   }
-     }
-    
-     if(flag1 == 0){
-for(j = 0; j < no_of_frames; ++j){
-     if(frames[j] == -1){
-     counter++;
-     faults++;
-     frames[j] = pages[i];
-     time[j] = counter;
-     flag2 = 1;
-     break;
-     }
-     }
-     }
-    
-     if(flag2 == 0){
-     pos = findLRU(time, no_of_frames);
-     counter++;
-     faults++;
-     frames[pos] = pages[i];
-     time[pos] = counter;
-     }
-    
-     printf("\n");
-    
-     for(j = 0; j < no_of_frames; ++j){
-     printf("%d\t", frames[j]);
-     }
-}
-printf("\n\nTotal Page Faults = %d", faults);
-    
-    return 0;
-}
+
+**Page replacement algorithm:**
+
+In an operating system that uses paging for memory management, a page replacement algorithm is needed to decide which page needs to be replaced when new page comes in. Page Fault – A page fault happens when a running program accesses a memory page that is mapped into the virtual address space, but not loaded in physical memory. Since actual physical memory is much smaller than virtual memory, page faults happen. In case of page fault, Operating System might have to replace one of the existing pages with the newly needed page. Different page replacement algorithms suggest different ways to decide which page to replace. The target for all algorithms is to reduce the number of page faults.
+
+**LRU-Least Recently Used :**
+
+LRU policy follows the concept of locality of reference as the base for its page replacement decisions. LRU policy says that pages that have not been used for the longest period of time will probably not be used for a long time. So, when a page fault occurs, it is better to replace the page that has been unused for a long time. This strategy is called LRU (Least Recently Used) paging. LRU policy is often used as a page replacement algorithm and considered to be good
+
+**Advantages :**
+
+It is open for full analysis. In this, we replace the page which is least recently used, thus free from Belady’s Anomaly. Easy to choose page which has faulted and hasn’t been used for a long time.
+
+**Disadvantage :**
+
+The problem is to determine an order for the frames defined by the time of last use. So, implementing LRU will require extra overhead either software implementation with extra computational time or implementation by hardware. To implement LRU we can use a linked list of all pages in memory, with the most recent page at the font and the least recent page at the rare. So, update deletion and insertion of linked lists is a time-consuming operation. Another way to implement LRU is special hardware either counter or stack.
+
+**Algorithm :**
+
+Let capacity be the number of pages that memory can hold. Let set be the current set of pages in memory.
+
+1- Start traversing the pages. 
+ i) If set holds less pages than capacity.
+  a) Insert page into the set one by one until the size of set reaches capacity or all page requests are processed. 
+  b) Simultaneously maintain the recent occurred index of each page in a map called indexes. 
+  c) Increment page fault
+ ii) Else If current page is present in set, do nothing. 
+     Else 
+  a) Find the page in the set that was least recently used. We find it using index array. We basically need to replace the page with minimum index. 
+  b) Replace the found page with current page. 
+  c) Increment page faults. 
+  d) Update index of current page.
+
+2-Return page faults.
+
+**Example :**
+
+Sample String : 0 4 1 4 2 4 3 4 2 4 0 4
+
+![image](https://user-images.githubusercontent.com/90513459/147379631-1d7edeed-2f07-492d-ba75-3b102f97024b.png) 
+
+**OUTPUT:**
+ ![image](https://user-images.githubusercontent.com/90513459/147379615-17f25dbc-1c38-4c3d-8788-c87c6328c47a.png)
